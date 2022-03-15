@@ -15,5 +15,5 @@ io.on('connection', (socket) => {
 });
 
 server.listen(3000, () => {
-  console.log('server running...');
+  console.log('server running..');
 });
