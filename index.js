@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const { Server } = require('socket.io');
 const http = require('http');
 
@@ -18,13 +17,9 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  console.log('user connected');
-
   socket.on('chat-message', (msg) => {
     console.log(msg);
   });
 });
 
-server.listen(3000, () => {
-  console.log('server running...');
-});
+server.listen(3000, () => {});
