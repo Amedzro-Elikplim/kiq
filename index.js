@@ -1,13 +1,15 @@
 const express = require('express');
-const cors = require('cors');
 const { Server } = require('socket.io');
 const http = require('http');
+
+const enviroment = process.env.NODE_ENV;
+const URL = enviroment !== 'development' ? 'https://kiq.netlify.app' : 'http://localhost:8080';
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://127.0.0.1:5500',
+    origin: URL,
     allowedHeaders: ['my-custom-header'],
     credentials: true,
   },
@@ -18,13 +20,9 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  console.log('user connected');
-
-  socket.on('chat-message', (msg) => {
-    console.log(msg);
+  socket.on('message', (msg) => {
+    socket.broadcast.emit('chat message', msg);
   });
 });
 
-server.listen(3000, () => {
-  console.log('server running...');
-});
+server.listen(3000, () => {});
