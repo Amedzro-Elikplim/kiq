@@ -2,14 +2,14 @@ const express = require('express');
 const { Server } = require('socket.io');
 const http = require('http');
 
-const enviroment = process.env.NODE_ENV;
-const URL = enviroment !== 'development' ? 'https://kiq.netlify.app' : 'http://localhost:8080';
+// const enviroment = process.env.NODE_ENV;
+// const URL = enviroment !== 'development' ? 'https://kiq.netlify.app' : 'http://localhost:8080';
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: URL,
+    origin: 'https://kiq.netlify.app',
     allowedHeaders: ['my-custom-header'],
     credentials: true,
   },
