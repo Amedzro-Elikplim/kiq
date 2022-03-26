@@ -1,7 +1,7 @@
 const express = require('express');
 const { Server } = require('socket.io');
 const http = require('http');
-const config = require('config');
+// const config = require('config');
 const cors = require('cors');
 
 const app = express();
@@ -9,7 +9,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: config.get('URL'),
+    origin: 'https://kiq.netlify.app',
     credentials: true,
   },
 });
