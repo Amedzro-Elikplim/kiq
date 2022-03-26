@@ -4,6 +4,7 @@ const http = require('http');
 // const config = require('config');
 const cors = require('cors');
 
+const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(cors());
 const server = http.createServer(app);
@@ -24,4 +25,4 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {});
+server.listen(PORT, () => {});
